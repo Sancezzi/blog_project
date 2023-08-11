@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block title %} Login {% endblock %}
+
+{% block content %}
+    <h2> Login </h2>
+    <p>Sign in with: 
+        <a href="{% url 'social:begin' 'github' %}"  class="btn btn-link btn-lg active btn-block">GitHub</a>
+        <a href="{% url 'social:begin' 'google-oauth2' %}" class="btn btn-link btn-lg active btn-block">Google</a>
+        <a href="{% url 'social:begin' 'vk-oauth2' %}" class="btn btn-link btn-lg active btn-block">VK</a>
+    </p>
+    <form method="post" class="form">
+        {{ form.username }}
+        {{ form.password }}
+        <div class="mb-1">Remember me: {{ form.remember_me }}</div>
+        {% csrf_token %}
+        <input type="submit" class="btn btn-primary btn-lg" value="Login">
+    </form>
+   <a href="{% url 'password_reset' %}">Forgot your username or password?</a>
+{% endblock %}
